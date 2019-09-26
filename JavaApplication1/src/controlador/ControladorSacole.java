@@ -28,6 +28,7 @@ public class ControladorSacole {
         objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
         objeto.setNr_serie(Integer.parseInt(man.jtfNr_Serie.getText()));
         objeto.setPreco(Double.parseDouble(man.jtfPreco.getText()));
+        objeto.setData_validade(LocalDate.parse(man.jtfData_validade.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         boolean resultado = DaoSacole.inserir(objeto);
         if (resultado) {
@@ -48,6 +49,7 @@ man.dispose();//fechar a tela da manutenção
         objeto.setSabor(man.jtfSabor.getText());
         objeto.setNr_serie(Integer.parseInt(man.jtfNr_Serie.getText()));
         objeto.setPreco(Double.parseDouble(man.jtfPreco.getText()));
+        objeto.setData_validade(LocalDate.parse(man.jtfData_validade.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         boolean resultado = DaoSacole.alterar(objeto);
         if (resultado) {
@@ -83,6 +85,7 @@ man.dispose();//fechar a tela da manutenção
         modelo.addColumn("Sabor");
         modelo.addColumn("Numero de Series");
         modelo.addColumn("Preco");
+        modelo.addColumn("Data de Validade");
         List<Sacole> resultados = DaoSacole.consultar();
         for (Sacole objeto : resultados) {
             Vector linha = new Vector();

@@ -88,8 +88,8 @@ public class DaoSacole {
                 objeto.setCodigo(rs.getInt("codigo"));
                 objeto.setSabor(rs.getString("sabor"));
                 objeto.setNr_serie(rs.getInt("nr_serie"));
-                objeto.setNr_serie(rs.getInt("preco"));
-                objeto.setNr_serie(rs.getInt("data_validade"));
+                objeto.setPreco(rs.getDouble("preco"));
+                
                 
                 
                 resultados.add(objeto);//não mexa nesse, ele adiciona o objeto na lista
@@ -115,7 +115,6 @@ public class DaoSacole {
                 objeto.setSabor(rs.getString("sabor"));
                 objeto.setNr_serie(rs.getInt("nr_serie"));
                 objeto.setPreco(rs.getDouble("preco"));
-                objeto.setData_validade(rs.getDate(44/88/2011));
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista
             }
         } catch (SQLException | ClassNotFoundException ex) {
