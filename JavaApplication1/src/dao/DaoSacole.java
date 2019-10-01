@@ -53,8 +53,8 @@ public class DaoSacole {
             ps.setInt(1, objeto.getNr_serie());
             ps.setDouble(2, objeto.getPreco());
             ps.setString(3, objeto.getSabor());
-            ps.setInt(4, objeto.getCodigo());
-            ps.setDate(5, Date.valueOf(objeto.getData_validade()));
+            ps.setInt(5, objeto.getCodigo());
+            ps.setDate(4, Date.valueOf(objeto.getData_validade()));
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -86,9 +86,10 @@ public class DaoSacole {
                 Sacole objeto = new Sacole();
                 //definir um set para cada atributo da entidade, cuidado com o tipo
                 objeto.setCodigo(rs.getInt("codigo"));
-                objeto.setSabor(rs.getString("sabor"));
                 objeto.setNr_serie(rs.getInt("nr_serie"));
                 objeto.setPreco(rs.getDouble("preco"));
+                objeto.setSabor(rs.getString("sabor"));
+                objeto.setData_validade(rs.getDate("data_validade").toLocalDate());
                 
                 
                 
@@ -115,6 +116,7 @@ public class DaoSacole {
                 objeto.setSabor(rs.getString("sabor"));
                 objeto.setNr_serie(rs.getInt("nr_serie"));
                 objeto.setPreco(rs.getDouble("preco"));
+                objeto.setData_validade(rs.getDate("data_validade").toLocalDate());
                 return objeto;//não mexa nesse, ele adiciona o objeto na lista
             }
         } catch (SQLException | ClassNotFoundException ex) {

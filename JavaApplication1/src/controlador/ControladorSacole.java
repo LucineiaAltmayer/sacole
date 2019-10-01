@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -25,7 +27,6 @@ public class ControladorSacole {
     public static void inserir(ManutencaoSacole man){
         Sacole objeto = new Sacole();
         objeto.setSabor(man.jtfSabor.getText());
-        objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
         objeto.setNr_serie(Integer.parseInt(man.jtfNr_Serie.getText()));
         objeto.setPreco(Double.parseDouble(man.jtfPreco.getText()));
         objeto.setData_validade(LocalDate.parse(man.jtfData_validade.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
@@ -82,10 +83,11 @@ man.dispose();//fechar a tela da manutenção
         DefaultTableModel modelo = new DefaultTableModel();
         //definindo o cabeçalho da tabela
         modelo.addColumn("Codigo");
-        modelo.addColumn("Sabor");
         modelo.addColumn("Numero de Series");
-        modelo.addColumn("Preco");
+        modelo.addColumn("preço");
+        modelo.addColumn("Sabor");
         modelo.addColumn("Data de Validade");
+        
         List<Sacole> resultados = DaoSacole.consultar();
         for (Sacole objeto : resultados) {
             Vector linha = new Vector();
@@ -95,6 +97,7 @@ man.dispose();//fechar a tela da manutenção
             linha.add(objeto.getNr_serie());
             linha.add(objeto.getPreco());
             linha.add(objeto.getSabor());
+            linha.add(objeto.getData_validade().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             modelo.addRow(linha); //adicionando a linha na tabela
         }
         tabela.setModel(modelo);
@@ -105,7 +108,8 @@ man.dispose();//fechar a tela da manutenção
         man.jtfCodigo.setText(objeto.getCodigo().toString());
         man.jtfSabor.setText(objeto.getSabor());
         man.jtfNr_Serie.setText(objeto.getNr_serie().toString());
-        objeto.setPreco(Double.parseDouble(man.jtfPreco.getText()));
+        man.jtfPreco.setText(objeto.getPreco().toString());
+        man.jtfData_validade.setText(objeto.getData_validade().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         man.jtfCodigo.setEnabled(false); //desabilitando o campo código
         man.btnAdicionar.setEnabled(false); //desabilitando o botão adicionar

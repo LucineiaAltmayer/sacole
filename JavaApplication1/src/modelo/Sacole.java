@@ -6,6 +6,7 @@
 package modelo;
 import java.time.LocalDate;
 
+
 /**
  *
  * @author Administrador
@@ -15,7 +16,7 @@ public class Sacole {
     private Integer nr_serie;
     private Double preco;
     private String sabor;
-    private LocalDate data_validade; //é necessário fazer a seguinte importação: import java.time.LocalDate;
+    private LocalDate data_validade;
 
     public LocalDate getData_validade() {
         return data_validade;
